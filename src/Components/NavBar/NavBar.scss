@@ -1,0 +1,23 @@
+.nav {
+  position: sticky;
+  background-color: #ffffff;
+  top: 0;
+  z-index: 200;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+      width: 150px;
+    }
+    .nav-mobile {
+      .nav-mobile-btn {
+        font-size: 30px;
+        cursor: pointer;
+        &:hover {
+          color: #2ec4b6;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.top-header {
+  background-color: #191f23;
+  position: relative;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logIn-btn {
+      border: 1.5px solid #2ec4b6;
+      border-radius: 4px;
+      padding: 2px 20px;
+      font-weight: 600;
+    }
+  }
+}
