@@ -1,123 +1,92 @@
 import React, { useEffect, useState } from "react";
-import NavBarItem from "../NavMobileItem/NavMobileItem";
+import NavMobileItem from "../NavMobileItem/NavMobileItem";
 import "./NavMobile.scss";
-// import { useSelector } from "react-redux";
-// import { useDispatch } from "react-redux";
-// import { toggleSideBar } from "../../Store/SideBarSlice";
 import { AiOutlineClose } from "react-icons/ai";
-import { IoMdArrowDropleft, IoMdArrowDropdown } from "react-icons/io";
-import { TbWorld } from "react-icons/tb";
-
+import { toggleSideBar } from "../../Store/SideBarSlice";
+import { useDispatch, useSelector } from "react-redux";
 import {
   FaFacebook,
-  FaGithub,
+  FaTwitter,
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
 
-const MobileSideBar = ({ isNavOpen }) => {
-  const [isOpen, setIsOpen] = useState(isNavOpen);
+const MobileSideBar = () => {
+  const globalState = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    setIsOpen(isNavOpen);
-  }, [isNavOpen]);
+  const navLinks = [
+    { title: "الرئيسية", link: "#", subTitles: [] },
+    {
+      title: "عن الكلية",
+      link: "",
+      subTitles: [
+        "كلمة العميد ",
+        "كلمة وكيل شئون الطلاب والتعليم",
+        " الرؤية والرسالة والأهداف",
+        "الهيكل التنظيمى",
+        "دليل الكلية",
+        "قرارات مجلس الكلية",
+      ],
+    },
+    { title: "الأقسام الأكاديمية", link: "", subTitles: [""] },
+    {
+      title: "خدمات إلكترونية",
+      link: "",
+      subTitles: [
+        "نتائج الامتحانات",
+        "إستخراج الشهادات",
+        "الاستبيانات",
+        "نظام التعليم الالكتروني",
+        "البريد الالكتروني",
+        "بنك المعرفة",
+        "خدمات أعضاء هيئة التدريس",
+      ],
+    },
+    {
+      title: "مركز ووحدات",
+      link: "",
+      subTitles: [
+        "وحدة ضمان الجودة بالكلية ",
+        "مركز التخطيط العمراني - وحدة ذات طابع خاص",
+        "وحدة التدريب",
+        "وحدة الأزمات و الكوارث",
+        "وحدة التعليم الالكترونى",
+        "وحدة التواصل مع الخريجين",
+        "وحدة القياس و التقويم",
+      ],
+    },
+    { title: "مجلة الكلية", link: "", subTitles: [] },
+    { title: "أعضاء هيئة التدريس", link: "", subTitles: [] },
+    { title: "الدراسات العليا", link: "", subTitles: [] },
+    { title: "إتصل بنا", link: "", subTitles: [] },
+  ];
+
   return (
     <section
-      className={`mobile-sideBar lg:hidden ${isOpen ? `fade-in` : `fade-out`}`}
+      className={`mobile-nav lg:hidden ${
+        globalState.SideBar.isOpen ? `fade-in` : `fade-out`
+      }`}
     >
-      <aside className="side-bar">
-        <div className="side-head mb-8">
-          <div>
-            <div className="text-lg text-main font-semibold">Menu</div>
-          </div>
-          <div
-            onClick={() => {
-              setIsOpen(!isOpen);
-            }}
-          >
-            <AiOutlineClose className=" cursor-pointer" />
-          </div>
+      <aside className="nav-bar">
+        <div
+          onClick={() => {
+            dispatch(toggleSideBar());
+          }}
+        >
+          <AiOutlineClose className="close-btn" />
         </div>
 
-        <NavBarItem title="الرئيسية" content={[]} />
-        <NavBarItem
-          title="عن الكلية"
-          content={[
-            { product: "Sports", count: "45" },
-            { product: "Formal", count: "75" },
-            { product: "Casual", count: "35" },
-            { product: "Safety Shoes", count: "26" },
-          ]}
-        />
-        <NavBarItem
-          title="الأقسام الأكاديمية"
-          content={[
-            { product: "Earrings", count: "46" },
-            { product: "Couple Rings", count: "73" },
-            { product: "Necklace", count: "50" },
-          ]}
-        />
-        <NavBarItem
-          title="خدمات إلكترونية"
-          content={[
-            { product: "Clothes Perfume", count: "12" },
-            { product: "Deodorant", count: "60" },
-            { product: "Jacket", count: "50" },
-            { product: "Dress & Frock", count: "87" },
-          ]}
-        />
-        <NavBarItem
-          title="مركز ووحدات"
-          content={[
-            { product: "Shampoo", count: "30" },
-            { product: "Sunscreen", count: "60" },
-            { product: "Body Wash", count: "50" },
-            { product: "Makeup Kit", count: "23" },
-          ]}
-        />
-        <NavBarItem
-          title="مجلة الكلية"
-          content={[
-            { product: "Sunglasses", count: "50" },
-            { product: "Lenses", count: "37" },
-          ]}
-        />
-        <NavBarItem
-          title="أعضاء هيئة التدريس"
-          content={[
-            { product: "Shopping Bag", count: "62" },
-            { product: "Gym Backpack", count: "85" },
-            { product: "Purse", count: "50" },
-            { product: "Wallet", count: "30" },
-          ]}
-        />
-        <NavBarItem
-          title="أعضاء هيئة التدريس"
-          content={[
-            { product: "Shopping Bag", count: "62" },
-            { product: "Gym Backpack", count: "85" },
-            { product: "Purse", count: "50" },
-            { product: "Wallet", count: "30" },
-          ]}
-        />
-        <NavBarItem
-          title="الدراسات العليا"
-          content={[
-            { product: "Shopping Bag", count: "62" },
-            { product: "Gym Backpack", count: "85" },
-            { product: "Purse", count: "50" },
-            { product: "Wallet", count: "30" },
-          ]}
-        />
-        <NavBarItem
-          title="إتصل بنا"
-          content={[
-            { product: "Shopping Bag", count: "62" },
-            { product: "Gym Backpack", count: "85" },
-            { product: "Purse", count: "50" },
-            { product: "Wallet", count: "30" },
-          ]}
-        />
+        {navLinks.map((item, i) => {
+          return (
+            <NavMobileItem
+              key={i}
+              title={item.title}
+              link={item.link}
+              subTitles={item.subTitles}
+            />
+          );
+        })}
 
         <div className="icons">
           <a href="" target="_blank">
@@ -130,10 +99,10 @@ const MobileSideBar = ({ isNavOpen }) => {
             <FaLinkedinIn />
           </a>
           <a href="github.com/AbdElrhman1997" target="_blank">
-            <FaGithub />
+            <FaTwitter />
           </a>
           <a href="https://abdelrahmanm.com/" target="_blank">
-            <TbWorld />
+            <FaInstagram />
           </a>
         </div>
       </aside>

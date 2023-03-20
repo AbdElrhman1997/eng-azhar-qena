@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../Assets/Imgs/logo.png";
 import DropMenu from "../DropMenu/DropMenu";
 import NavMobile from "../NavMobile/NavMobile";
 import { BiMenu } from "react-icons/bi";
 import "./NavBar.scss";
+import { useDispatch } from "react-redux";
+import { toggleSideBar } from "../../Store/SideBarSlice";
 
 const NavBar = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  useEffect(() => {
-    setIsNavOpen(isNavOpen);
-  }, [isNavOpen]);
+  const dispatch = useDispatch();
+
   const navLinks = [
     { title: "الرئيسية", link: "#", subTitles: [] },
+    { title: "أعضاء هيئة التدريس", link: "", subTitles: [] },
     {
       title: "عن الكلية",
       link: "",
@@ -25,7 +26,16 @@ const NavBar = () => {
         "قرارات مجلس الكلية",
       ],
     },
-    { title: "الأقسام الأكاديمية", link: "", subTitles: [""] },
+    {
+      title: "الأقسام الأكاديمية",
+      link: "",
+      subTitles: [
+        "إعدادي",
+        "الهندسة المدنية",
+        "هندسة التعدين والبترول",
+        "الهندسة الكهربية",
+      ],
+    },
     {
       title: "خدمات إلكترونية",
       link: "",
@@ -53,7 +63,6 @@ const NavBar = () => {
       ],
     },
     { title: "مجلة الكلية", link: "", subTitles: [] },
-    { title: "أعضاء هيئة التدريس", link: "", subTitles: [] },
     { title: "الدراسات العليا", link: "", subTitles: [] },
     { title: "إتصل بنا", link: "", subTitles: [] },
   ];
@@ -61,10 +70,11 @@ const NavBar = () => {
     <nav className="nav">
       <div className=" container">
         <div className="lg:flex hidden">
-          {navLinks.map((item) => {
+          {navLinks.map((item, i) => {
             return (
               <NavLink to={item.link}>
                 <DropMenu
+                  key={i}
                   title={item.title}
                   link={item.link}
                   subTitles={item.subTitles}
@@ -77,10 +87,10 @@ const NavBar = () => {
           <BiMenu
             className="nav-mobile-btn"
             onClick={() => {
-              setIsNavOpen(!isNavOpen);
+              dispatch(toggleSideBar());
             }}
           />
-          <NavMobile isNavOpen={isNavOpen} />
+          <NavMobile />
         </div>
         <img className="logo" src={logo} />
       </div>

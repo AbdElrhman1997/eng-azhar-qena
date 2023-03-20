@@ -1,10 +1,7 @@
 .side {
-  position: sticky;
-  top: 30px;
   .side-bar {
+    top: 80px;
     height: fit-content;
-    width: 270px;
-    // transform: translateY(-7%);
     border-radius: 10px;
     .side-head {
       border-bottom: 2px solid rgb(215, 215, 215);
@@ -16,6 +13,10 @@
       padding: 8px 16px;
       margin: 12px 0;
       color: white;
+      cursor: pointer;
+      &:hover {
+        background-color: #25b1a3;
+      }
     }
   }
 }

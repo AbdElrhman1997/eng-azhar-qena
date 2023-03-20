@@ -10,6 +10,10 @@
       border-radius: 4px;
       padding: 2px 20px;
       font-weight: 600;
+      &:hover {
+        background-color: #2ec4b6;
+        color: white;
+      }
     }
   }
 }

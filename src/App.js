@@ -5,6 +5,8 @@ import "./App.scss";
 import TopHeader from "./Components/TopHeader/TopHeader";
 import NavBar from "./Components/NavBar/NavBar";
 import ContentArea from "./Components/ContentArea/ContentArea";
+import Events from "./Components/Events/Events";
+import Ads from "./Components/Ads/Ads";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <TopHeader />
       <NavBar />
       <ContentArea />
+      <Events />
+      <Ads />
       <Footer />
     </main>
   );
